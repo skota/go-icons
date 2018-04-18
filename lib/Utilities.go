@@ -39,7 +39,7 @@ func DoTasks(params Config) {
 func FileExists(fname string) (bool, error) {
 	if _, err := os.Stat(fname); err != nil {
 		if os.IsNotExist(err) {
-			return false, nil
+			return false, err
 		}
 		return false, err
 	}
