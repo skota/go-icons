@@ -107,14 +107,9 @@ func ResizeIcon() {
 
 //func createIcons(image string, osname string) int {
 func createIcons() int {
-	//lets fake size for now
-	// imgSizes := [...]imagesize{{width: 200, height: 200},
-	// 	{width: 200, height: 200}}
-
 	//create dir structure
 	currDir, err := os.Getwd()
 	if err != nil {
-		// die("Getwd(): %v\n", err)
 		fmt.Println("Unable to get current directory ")
 		os.Exit(0)
 	}
@@ -126,6 +121,20 @@ func createIcons() int {
 	}
 
 	//create nested dirs to store images
+
+	/*
+		create map with image_name and dimensions
+
+		loop through map
+			clone main image
+			resize cloned image
+			save with  name
+		end loop
+
+
+
+	*/
+
 	// for _, imgsiz = range imgSizes {
 	// 	//clone image
 	// 	//pass image and size params to resiz
