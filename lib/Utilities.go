@@ -185,17 +185,3 @@ func getIconList(os string) []iconNames {
 	}
 
 }
-
-// func createSplashes(image string, osname string) int {
-// 	//returns 1 if success, -1 if error
-// }
-
-//createIconDir ...
-// func createIconDir() {
-
-// }
-
-//createSplashDir ...
-// func createSplashDir() {
-
-// }
