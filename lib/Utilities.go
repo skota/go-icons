@@ -18,9 +18,18 @@ type Config struct {
 	Os        string
 }
 
+//----- image size
 type imagesize struct {
 	width  int
 	height int
+}
+
+//--- struct mapping image name and size
+type iconNames struct {
+	name   string
+	width  int
+	height int
+	os     string
 }
 
 //Dotasks ...
@@ -30,7 +39,7 @@ func DoTasks(params Config) {
 	// } else {
 	// 	createIcons(params)
 	// }
-	createIcons()
+	createIcons("ios")
 
 	// ResizeIcon()
 }
@@ -106,7 +115,7 @@ func ResizeIcon() {
 }
 
 //func createIcons(image string, osname string) int {
-func createIcons() int {
+func createIcons(osname string) int {
 	//create dir structure
 	currDir, err := os.Getwd()
 	if err != nil {
@@ -120,8 +129,18 @@ func createIcons() int {
 		os.Exit(0)
 	}
 
-	//create nested dirs to store images
+	//next create subfolder ios or android
 
+	//then change to currFolder/images/osname   - ex ./images/ios
+
+	imgList := getIconList("ios")
+
+	for _, img := range imgList {
+		fmt.Printf("Image name: is %s, width is %d, height is %d\n", img.name, img.width, img.height)
+		//resizedIcon
+	}
+
+	//create nested dirs to store images
 	/*
 		create map with image_name and dimensions
 
@@ -130,23 +149,39 @@ func createIcons() int {
 			resize cloned image
 			save with  name
 		end loop
-
-
-
 	*/
 
-	// for _, imgsiz = range imgSizes {
-	// 	//clone image
-	// 	//pass image and size params to resiz
-
-	// }
-	//open image
-	//defer close
-	// for _, imgsiz = range imgSizes {
-	// 	//clone image
-	// 	//pass image and size params to resiz
-	// }
 	return 1
+}
+
+func getIconList(os string) []iconNames {
+	if os == "ios" {
+		return []iconNames{
+			{"icon-40.png", 40, 40, "ios"},
+			{"icon-40@2x.png", 80, 80, "ios"},
+			{"icon-40@2x.png", 120, 120, "ios"},
+			{"icon-50.png", 50, 50, "ios"},
+			{"icon-50@2x.png", 100, 100, "ios"},
+			{"icon-60.png", 60, 60, "ios"},
+			{"icon-60@2x.png", 120, 120, "ios"},
+			{"icon-60@3x.png", 180, 180, "ios"},
+			{"icon-72.png", 72, 72, "ios"},
+			{"icon-72@2x.png", 144, 144, "ios"},
+			{"icon-76.png", 76, 76, "ios"},
+			{"icon-72@2x.png", 152, 152, "ios"},
+			{"icon-83.5@2x.png", 167, 167, "ios"},
+			{"icon-1024.png", 1024, 1024, "ios"},
+			{"icon-small.png", 29, 29, "ios"},
+			{"icon-small@2x.png", 58, 58, "ios"},
+			{"icon-small@3x.png", 87, 87, "ios"},
+			{"icon.png", 57, 57, "ios"},
+			{"icon.png", 114, 114, "ios"}}
+
+	} else {
+		//return images for android
+		return []iconNames{}
+	}
+
 }
 
 // func createSplashes(image string, osname string) int {
