@@ -90,6 +90,7 @@ func CheckfileSize(fname string) (imgsize int64) {
 //
 func ResizeIcon() {
 	//by this time we know file aleady exists
+	//TODO  --  fix this to take image name as param
 	src, err := imaging.Open("/Users/sriramkota/Downloads/pics/IMG_3446.JPG")
 	if err != nil {
 		log.Fatalf("failed to open image: %v", err)
@@ -102,6 +103,7 @@ func ResizeIcon() {
 		log.Fatal(err)
 	}
 
+	//TODO  --  Destination file name..
 	destPath := path.Join(currDir, "copy.jpeg")
 
 	// resize copy and save with new name
