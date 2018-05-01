@@ -181,7 +181,12 @@ func getIconList(os string) []iconNames {
 
 	} else {
 		//return images for android
-		return []iconNames{}
+		return []iconNames{{"drawable-hdpi-icon.png", 72, 72, "android"},
+			{"drawable-ldpi-icon.png", 36, 36, "android"},
+			{"drawable-mdpi-icon.png", 48, 48, "android"},
+			{"drawable-xhdpi-icon.png", 96, 96, "android"},
+			{"drawable-xxhdpi-icon.png", 144, 144, "android"},
+			{"drawable-xxxhdpi-icon.png", 192, 192, "android"}}
 	}
 
 }
