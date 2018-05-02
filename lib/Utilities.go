@@ -75,9 +75,7 @@ func CheckFileType(fname string) int {
 
 //CheckfileSize -------check if file is under 1 mb --------------
 func CheckfileSize(fname string) (imgsize int64) {
-	imgsize = 0
 	fi, _ := os.Stat(fname)
-
 	//what kind of error handling is needed here
 	imgsize = fi.Size()
 	return imgsize
@@ -181,21 +179,12 @@ func getIconList(os string) []iconNames {
 
 	} else {
 		//return images for android
-		return []iconNames{}
+		return []iconNames{{"drawable-hdpi-icon.png", 72, 72, "android"},
+			{"drawable-ldpi-icon.png", 36, 36, "android"},
+			{"drawable-mdpi-icon.png", 48, 48, "android"},
+			{"drawable-xhdpi-icon.png", 96, 96, "android"},
+			{"drawable-xxhdpi-icon.png", 144, 144, "android"},
+			{"drawable-xxxhdpi-icon.png", 192, 192, "android"}}
 	}
 
 }
-
-// func createSplashes(image string, osname string) int {
-// 	//returns 1 if success, -1 if error
-// }
-
-//createIconDir ...
-// func createIconDir() {
-
-// }
-
-//createSplashDir ...
-// func createSplashDir() {
-
-// }
