@@ -43,16 +43,16 @@ func checkparams(params utils.Config) {
 	}
 
 	//and size isless than 1 mb
-	// fileSize := utils.CheckfileSize(params.Image)
-	// fmt.Printf("File size is :%d\n", fileSize)
-	// if fileSize > 4096 {
-	// 	fmt.Println("File size cannot exceed 1mb.")
-	// 	os.Exit(-1)
-	// }
+	fileSize := utils.CheckfileSize(params.Image)
+
+	if fileSize > 4096 {
+		fmt.Println("File size cannot exceed 4mb.")
+		os.Exit(-1)
+	}
 }
 
 //
-var usageinfo string = ` icon-go is a Go implemented CLI tool for generating splashes and icons for android and ios.
+var usageinfo string = `icon-go is a Go implemented CLI tool for generating splashes and icons for android and ios.
 
 Usage:
 

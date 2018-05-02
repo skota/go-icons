@@ -75,9 +75,7 @@ func CheckFileType(fname string) int {
 
 //CheckfileSize -------check if file is under 1 mb --------------
 func CheckfileSize(fname string) (imgsize int64) {
-	imgsize = 0
 	fi, _ := os.Stat(fname)
-
 	//what kind of error handling is needed here
 	imgsize = fi.Size()
 	return imgsize
