@@ -2,11 +2,11 @@ package lib
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"path"
 	"path/filepath"
-	"strings"
 
 	"github.com/disintegration/imaging"
 )
@@ -55,22 +55,42 @@ func FileExists(fname string) (bool, error) {
 	return true, nil
 }
 
-//CheckFileType -------check if file has correct extension --------------
-func CheckFileType(fname string) int {
-	// is this really the correct way to check for file type
-	// what if file is simply renamed to have a jpg extension
-	fileparts := strings.SplitAfter(fname, ".")
-	fileExtentions := map[string]bool{"PNG": true,
-		"png":  true,
-		"JPG":  true,
-		"JPEG": true,
-		"jpeg": true,
-		"jpg":  true}
+// //CheckFileType -------check if file has correct extension --------------
+// func CheckFileType(fname string) int {
+// 	// is this really the correct way to check for file type
+// 	// what if file is simply renamed to have a jpg extension
+// 	fileparts := strings.SplitAfter(fname, ".")
+// 	fileExtentions := map[string]bool{"PNG": true,
+// 		"png":  true,
+// 		"JPG":  true,
+// 		"JPEG": true,
+// 		"jpeg": true,
+// 		"jpg":  true}
 
-	if fileExtentions[fileparts[1]] {
-		return 1 //file extension is valid
+// 	if fileExtentions[fileparts[1]] {
+// 		return 1 //file extension is valid
+// 	}
+// 	return -1
+// }
+
+//CheckFileType -------read file magic bytes to verify format --------------
+func CheckFileType(fname string) (string, int) {
+	buf := make([]byte, 3)
+	f, err := os.Open(fname)
+
+	_, err = f.Read(buf)
+	if err != nil && err != io.EOF {
+		return "unknown type", -1
 	}
-	return -1
+	//lets see the first three bytes
+	fmt.Printf("these are the 3 bytes - %s ", string(buf))
+
+	if len(buf) > 2 && buf[0] == 0xFF && buf[1] == 0xD8 && buf[2] == 0xFF {
+		return "Jpg", 1
+	} else {
+		return "Not Jpg", -1
+	}
+
 }
 
 //CheckfileSize -------check if file is under 1 mb --------------

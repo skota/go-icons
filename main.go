@@ -36,19 +36,23 @@ func checkparams(params utils.Config) {
 	}
 
 	//ensure file has correct extension
-	fieldType := utils.CheckFileType(params.Image)
+	//how do i use the first param returned ? ignore it?
+	_, fieldType := utils.CheckFileType(params.Image)
 	if fieldType != 1 {
 		fmt.Println("Invalid file. Only jpg and png file types are accepted")
 		os.Exit(-1)
 	}
 
+	//check file type..
+
 	//and size isless than 1 mb
 	fileSize := utils.CheckfileSize(params.Image)
 
-	if fileSize > 4096 {
+	if fileSize > 12496341 {
 		fmt.Println("File size cannot exceed 4mb.")
 		os.Exit(-1)
 	}
+
 }
 
 //
